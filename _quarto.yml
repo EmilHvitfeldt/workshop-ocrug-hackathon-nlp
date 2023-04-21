@@ -1,0 +1,20 @@
+project:
+  type: website
+  render:
+    - "index.qmd"
+  resources:
+    - "text-mining.html"
+    - "text-mining_files/"
+
+
+website:
+  title: "today"
+  navbar:
+    left:
+      - href: index.qmd
+
+format: html
+
+theme:
+  - cosmo
+  - website-styles.scss

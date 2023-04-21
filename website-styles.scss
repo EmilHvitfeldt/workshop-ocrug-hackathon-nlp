@@ -1,0 +1,23 @@
+/*-- scss:defaults --*/
+
+$theme-white: #FEFEFE;
+$theme-green: #678D41;
+$theme-blue: #394D85;
+$theme-darkblue: #13234B;
+
+@import url('https://fonts.googleapis.com/css2?family=Fahkwang&family=Ingrid+Darling&family=Quicksand&display=swap');
+
+$body-bg: $theme-white;
+$link-color: $theme-blue;
+$code-color: $theme-blue;
+$body-color: $theme-darkblue;
+$presentation-heading-color: $theme-green;
+$presentation-heading-font: 'Fahkwang', sans-serif;
+$font-family-sans-serif: 'Quicksand', sans-serif;
+$code-block-font-size: 0.8em;
+/*-- scss:rules --*/
+
+.slide-deck {
+  width: 100%;
+  aspect-ratio: 1.777778;
+}
