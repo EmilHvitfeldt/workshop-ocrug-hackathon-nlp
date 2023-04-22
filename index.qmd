@@ -31,3 +31,5 @@ These are the materials for the [SoCal RUG Hackathon 2023-04
 + Link to Supervised Machine Learning for Text Analysis in R book: <https://smltar.com/>
 
 + Link to Text Mining with R book: <https://www.tidytextmining.com/>
+
++ Link to sourve material <https://github.com/EmilHvitfeldt/tutorial-ocrug-hackathon-nlp/>
