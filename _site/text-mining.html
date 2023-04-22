@@ -387,72 +387,1304 @@
     <div class="slides">
 
 
-<section id="theme-title1" class="slide level2 theme-title1 center">
-<h2>.theme-title1</h2>
-<h3 id="quarto-revealjs-earth">quarto-revealjs-earth</h3>
-</section>
-<section id="theme-title2" class="slide level2 theme-title2 center">
-<h2>.theme-title2</h2>
-<h3 id="another-title-theme">Another title theme</h3>
-</section>
-<section id="theme-section1" class="slide level2 theme-section1 center">
-<h2>.theme-section1</h2>
-<h3 id="text-and-code-example">Text and code example</h3>
-<p>You are able to include text and code, and the width of each should fit</p>
+<section id="tidy-text-mining" class="slide level2 theme-title1 center">
+<h2>Tidy Text Mining</h2>
+<h3 id="ocrug-hackathon-2023">OCRUG Hackathon 2023</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(mpg<span class="sc">~</span>disp, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = mpg ~ disp, data = mtcars)
 
-Coefficients:
-(Intercept)         disp  
-   29.59985     -0.04122  </code></pre>
+</div>
+</section>
+<section id="schedule" class="slide level2 theme-slide1">
+<h2>Schedule</h2>
+<p><br></p>
+<ul>
+<li><p><code>09:30 AM – 10:15 AM</code>: Text Mining</p></li>
+<li><p><code>10:15 AM - 10:30 AM</code>: Break</p></li>
+<li><p><code>10:30 AM - 11:15 AM</code>: Modeling with Text</p></li>
+</ul>
+</section>
+<section id="what-is-text-mining" class="slide level2 theme-section3 center">
+<h2>What is text mining?</h2>
+<div class="fragment">
+<!-- -->
+<h3 id="what-is-text">What is text?</h3>
+</div>
+</section>
+<section id="what-is-text-1" class="slide level2 theme-slide6">
+<h2>What is text?</h2>
+<p>A series of characters, hopefully trying to convey meaning</p>
+<div class="fragment">
+<blockquote>
+<p>If you don’t go to other men’s funerals, they won’t go to yours.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>猿も木から落ちる</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>See you soon 🛫🌴🌞</p>
+</blockquote>
+</div>
+</section>
+<section id="what-is-text-mining-1" class="slide level2 theme-section3 center">
+<h2>What is text mining?</h2>
+<div class="fragment">
+<p>The process of transforming unstructured text into structured data for easy analysis</p>
+</div>
+</section>
+<section id="disclaimer" class="slide level2 theme-slide1" style="text-align: center;">
+<h2>Disclaimer</h2>
+<p><br></p>
+<p>I’ll show examples in English</p>
+<p>English is not the only language out there #BenderRule</p>
+<p>The difficulty of different tasks vary from language to language</p>
+<p>langauge != text</p>
+</section>
+<section id="software" class="slide level2 theme-slide2">
+<h2>Software</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/R-logo.svg" height="200"></p>
+<ul>
+<li>tidytext</li>
+<li>quanteda</li>
+<li>tm</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/Python-logo.svg" height="200"></p>
+<ul>
+<li>NLTK</li>
+<li>spacy</li>
+</ul>
 </div>
 </div>
 </section>
-<section id="theme-section2" class="slide level2 theme-section2 center">
-<h2>.theme-section2</h2>
-<h3 id="subtitle">Subtitle</h3>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="section" class="slide level2 theme-slide2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/tidytext.png"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/tidyverse.png"></p>
+</div>
+</div>
 </section>
-<section id="theme-section3" class="slide level2 theme-section3 center">
-<h2>.theme-section3</h2>
-<h3 id="another-subtitle">Another subtitle</h3>
+<section id="section-1" class="slide level2 theme-slide3">
+<h2></h2>
+<div class="r-fit-text">
+<p>Most of data science</p>
+<p>is counting,</p>
+<p>and sometimes dividing</p>
+</div>
+<p><em>Hadley Wickham</em></p>
 </section>
-<section id="theme-slide1" class="slide level2 theme-slide1">
-<h2>.theme-slide1</h2>
-<h3 id="normal-slide">Normal slide</h3>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="section-2" class="slide level2 theme-slide3">
+<h2></h2>
+<div class="r-fit-text">
+<p>Most of <del>data science</del></p>
+<p><strong>text preprocessing</strong></p>
+<p>is counting,</p>
+<p>and sometimes dividing</p>
+</div>
+<p><del><em>Hadley Wickham</em></del> Emil Hvitfeldt</p>
 </section>
-<section id="theme-slide2" class="slide level2 theme-slide2">
-<h2>.theme-slide2</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="plan" class="slide level2 theme-slide4">
+<h2>Plan</h2>
+<ul>
+<li>tokenize</li>
+<li>modify tokens</li>
+<li>remove tokens</li>
+<li>count tokens</li>
+</ul>
 </section>
-<section id="theme-slide3" class="slide level2 theme-slide3">
-<h2>.theme-slide3</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="data" class="slide level2 theme-slide5">
+<h2>Data</h2>
+<p><a href="https://data.snf.ch/datasets">Swiss National Science Foundation Data Sets</a></p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grants <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/grants.csv.gz"</span>, <span class="at">col_types =</span> <span class="st">"cifc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(grants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3,824
+Columns: 4
+$ abstract      &lt;chr&gt; "In organizational research, corruptio…
+$ amount        &lt;int&gt; 40380800, 4660000, 9094100, 293136000,…
+$ decision_year &lt;fct&gt; 2022, 2012, 2012, 2022, 2012, 2022, 20…
+$ grant_number  &lt;chr&gt; "212921", "142948", "141266", "213586"…</code></pre>
+</div>
+</div>
+</div>
 </section>
-<section id="theme-slide4" class="slide level2 theme-slide4">
-<h2>.theme-slide4</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="data---decision-year" class="slide level2 theme-slide5">
+<h2>Data - decision year</h2>
+<p>We are only looking at 2 different years: 2022 and 2012</p>
+<div class="cell columns column-output-location" data-fig.asp="1">
+<div class="column">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(decision_year)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="text-mining_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="theme-slide5" class="slide level2 theme-slide5">
-<h2>.theme-slide5</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="data---amount" class="slide level2 theme-slide5">
+<h2>Data - amount</h2>
+<p>The money about of the grant is quite varied</p>
+<div class="cell columns column-output-location" data-fig.asp="1">
+<div class="column">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(amount)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="text-mining_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="theme-slide6" class="slide level2 theme-slide6">
-<h2>.theme-slide6</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="data---amount-1" class="slide level2 theme-slide5">
+<h2>Data - amount</h2>
+<p>Even once we take the logarithm</p>
+<div class="cell columns column-output-location" data-fig.asp="1">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(amount)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="text-mining_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="theme-slide7" class="slide level2 theme-slide7">
-<h2>.theme-slide7</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="data---abstracts" class="slide level2 theme-slide5">
+<h2>Data - abstracts</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>grants<span class="sc">$</span>abstract[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "In organizational research, corruption, the misuse of a position of authority by actors within organizations for private or organizational gain, has attracted a wealth of scholarship (e.g. Ashforth &amp; Anand, 2003; Castro et al., 2020; Greve et al., 2010; Pinto et al., 2008). Since corruption is a type of misconduct which creates vastly nega-tive consequences, understanding how it can be averted and controlled has been an important research focus (e.g. Lange, 2008; Misangyi et al., 2008). This scholarship points to the critical role of anti-corruption regulation. Hereby, regulation can be generally defined as activity that aims at “prevent[ing] the occurrence of certain un-desirable activities” among targeted actors, such as organizations or individuals (Baldwin et al., 2012: 3).Research on organizational anti-corruption regulation has several shortcomings. First, it focuses either on public or on private anti-corruption regulation (e.g. Hough, 2013) thus tending to explore either the regulato-ry activities of public authorities and focusing predominantly on mandatory regulatory pressures or exploring private actors who assume quasi-regulatory roles and use voluntary regulatory tools. There is a lack of under-standing of how public and private anti-corruption regulation interrelate and under which conditions they yield “synergistic effects” in inducing targeted actors to behave in desirable ways (e.g. Aragon-Correa et al., 2020: 353). Second, our understanding of how public and private anti-corruption regulation interrelate in the context of international nongovernmental organizations (INGOs) is particularly scarce. INGOs are rule-making bodies in a variety of global sectors, including sports organizations, scientific bodies, religious groups, or medical special-ists (Boli &amp; Thomas, 1999). Although corruption may be wide-spread also among INGOs (Transparency Inter-national, 2012), INGOs have predominantly been conceived as communities that regulate themselves (e.g. Boli &amp; Thomas, 1999) rather than as the target of regulatory pressure that public and private regulators levy against them. To address these gaps, we propose to conduct systematic exploratory research with a focus on Interna-tional Sports Federations (ISF), a field of INGOs where corruption has been a particularly pertinent issue. ISFs serve as revelatory cases for our theory building (Yin, 2014). While they have faced regulatory pressure from public and private regulators, ISF scholarship has predominantly focused on self-regulatory measures (Chap-pelet, 2017; Chatzigianni, 2018; Forster, 2016; Geeraert, 2019; Pieth, 2014). As a consequence, we do not know enough about how the interaction of public and private anti-corruption regulation has influenced the behavior of ISFs.In our analysis of the ISF context, we will draw on the smart regulation approach (e.g. Gunningham et al., 1998). Smart regulation is a normative theory emphasizing that the combination of multiple regulatory in-struments and the coordination of public and private regulatory actors will yield better regulatory outcomes. In view of the smart regulation approach, our project has two purposes: First, we aim to rely on the ‘regulatory design principles’ underlying the smart regulation approach as yardsticks for detailed empirical research in the ISF field. The aim is to inductively develop new descriptive theory on interrelationships between public and private anti-corruption regulation in an INGO context. Second, we will also build new normative theory1: We will build on our empirical findings in order to adapt these design principles to the ISF context and explore how anti-corruption regulation in a field of INGOs where corruption has been a pertinent issue should look like.We contribute to different literature streams including scholarship on organizational corruption, regula-tory scholarship, neo-institutional organization theory, global governance, and international sports federations."</code></pre>
+</div>
+</div>
 </section>
-<section id="theme-slide8" class="slide level2 theme-slide8">
-<h2>.theme-slide8</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="data---abstracts-1" class="slide level2 theme-slide5">
+<h2>Data - abstracts</h2>
+<div class="cell columns column-output-location" data-fig.asp="1">
+<div class="column">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_characters =</span> <span class="fu">nchar</span>(abstract)) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_characters)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="text-mining_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-3" class="slide level2 theme-title1 center">
+<h2></h2>
+<div class="r-fit-text">
+<p>Tokenization</p>
+</div>
+</section>
+<section id="what-is-tokenization" class="slide level2 theme-section3 center">
+<h2>What is tokenization?</h2>
+<div class="fragment">
+<p>The process of turning raw text into <strong>tokens</strong></p>
+</div>
+</section>
+<section id="what-are-tokens" class="slide level2 theme-section3 center">
+<h2>What are tokens?</h2>
+<div class="fragment">
+<p>a meaningful unit of text, such as a word</p>
+</div>
+</section>
+<section id="example-text" class="slide level2 theme-slide6">
+<h2>Example text</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>example_text <span class="ot">&lt;-</span> grants <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">nchar</span>(abstract)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(abstract)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>example_text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "The bicycle as an example of social construction - Cycling in Eastern Europe: why are we surprised to learn about its history? - Micromobility and state policies - Bicycle for emancipation and as a means of totalitarian control - How does history cycling in Eastern Europe relate to other global phenomena of cycling?"</code></pre>
+</div>
+</div>
+</section>
+<section id="white-spaces-tokenization" class="slide level2 theme-slide6">
+<h2>White spaces tokenization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(example_text, <span class="st">"</span><span class="sc">\\</span><span class="st">s"</span>)[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>"The" "bicycle" "as" "an" "example" "of" "social" "construction" "-" "Cycling" "in" "Eastern" "Europe:" "why" "are" "we" "surprised" "to" "learn" "about" "its" "history?" "-" "Micromobility" "and" "state" "policies" "-" "Bicycle" "for" "emancipation" "and" "as" "a" "means" "of" "totalitarian" "control" "-" "How" "does" "history" "cycling" "in" "Eastern" "Europe" "relate" "to" "other" "global" "phenomena" "of" "cycling?"</code></pre>
+</div>
+</div>
+</section>
+<section id="tokenizers-package" class="slide level2 theme-slide6">
+<h2>{tokenizers} package</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tokenizers)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tokenize_words</span>(example_text)[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>"the" "bicycle" "as" "an" "example" "of" "social" "construction" "cycling" "in" "eastern" "europe" "why" "are" "we" "surprised" "to" "learn" "about" "its" "history" "micromobility" "and" "state" "policies" "bicycle" "for" "emancipation" "and" "as" "a" "means" "of" "totalitarian" "control" "how" "does" "history" "cycling" "in" "eastern" "europe" "relate" "to" "other" "global" "phenomena" "of" "cycling"</code></pre>
+</div>
+</div>
+</section>
+<section id="tokenization-considerations" class="slide level2 theme-slide6">
+<h2>tokenization considerations</h2>
+<p><br></p>
+<ul>
+<li>Should we turn UPPERCASE letters to lowercase?</li>
+</ul>
+<p><br></p>
+<ul>
+<li>How should we handle punctuation?</li>
+</ul>
+<p><br></p>
+<ul>
+<li>What about non-word characters inside words?</li>
+</ul>
+</section>
+<section id="plan-1" class="slide level2 theme-slide1">
+<h2>Plan</h2>
+<ul>
+<li><em>cleaning text</em></li>
+<li>tokenize</li>
+<li>modify tokens</li>
+<li>remove tokens</li>
+<li>count tokens</li>
+</ul>
+</section>
+<section id="cleaning" class="slide level2 theme-slide7">
+<h2>Cleaning</h2>
+<p>Very manual process, and will be highly domain-specific</p>
+<p>You might have to use 👻Regular Expressions🧛</p>
+</section>
+<section id="cleaning-1" class="slide level2 theme-slide7">
+<h2>Cleaning</h2>
+<p>Some grant have many references:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>grants<span class="sc">$</span>abstract[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="cleaning-1-output" class="slide level2 theme-slide7 output-location-slide"><h2>Cleaning</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "In organizational research, corruption, the misuse of a position of authority by actors within organizations for private or organizational gain, has attracted a wealth of scholarship (e.g. Ashforth &amp; Anand, 2003; Castro et al., 2020; Greve et al., 2010; Pinto et al., 2008). Since corruption is a type of misconduct which creates vastly nega-tive consequences, understanding how it can be averted and controlled has been an important research focus (e.g. Lange, 2008; Misangyi et al., 2008). This scholarship points to the critical role of anti-corruption regulation. Hereby, regulation can be generally defined as activity that aims at “prevent[ing] the occurrence of certain un-desirable activities” among targeted actors, such as organizations or individuals (Baldwin et al., 2012: 3).Research on organizational anti-corruption regulation has several shortcomings. First, it focuses either on public or on private anti-corruption regulation (e.g. Hough, 2013) thus tending to explore either the regulato-ry activities of public authorities and focusing predominantly on mandatory regulatory pressures or exploring private actors who assume quasi-regulatory roles and use voluntary regulatory tools. There is a lack of under-standing of how public and private anti-corruption regulation interrelate and under which conditions they yield “synergistic effects” in inducing targeted actors to behave in desirable ways (e.g. Aragon-Correa et al., 2020: 353). Second, our understanding of how public and private anti-corruption regulation interrelate in the context of international nongovernmental organizations (INGOs) is particularly scarce. INGOs are rule-making bodies in a variety of global sectors, including sports organizations, scientific bodies, religious groups, or medical special-ists (Boli &amp; Thomas, 1999). Although corruption may be wide-spread also among INGOs (Transparency Inter-national, 2012), INGOs have predominantly been conceived as communities that regulate themselves (e.g. Boli &amp; Thomas, 1999) rather than as the target of regulatory pressure that public and private regulators levy against them. To address these gaps, we propose to conduct systematic exploratory research with a focus on Interna-tional Sports Federations (ISF), a field of INGOs where corruption has been a particularly pertinent issue. ISFs serve as revelatory cases for our theory building (Yin, 2014). While they have faced regulatory pressure from public and private regulators, ISF scholarship has predominantly focused on self-regulatory measures (Chap-pelet, 2017; Chatzigianni, 2018; Forster, 2016; Geeraert, 2019; Pieth, 2014). As a consequence, we do not know enough about how the interaction of public and private anti-corruption regulation has influenced the behavior of ISFs.In our analysis of the ISF context, we will draw on the smart regulation approach (e.g. Gunningham et al., 1998). Smart regulation is a normative theory emphasizing that the combination of multiple regulatory in-struments and the coordination of public and private regulatory actors will yield better regulatory outcomes. In view of the smart regulation approach, our project has two purposes: First, we aim to rely on the ‘regulatory design principles’ underlying the smart regulation approach as yardsticks for detailed empirical research in the ISF field. The aim is to inductively develop new descriptive theory on interrelationships between public and private anti-corruption regulation in an INGO context. Second, we will also build new normative theory1: We will build on our empirical findings in order to adapt these design principles to the ISF context and explore how anti-corruption regulation in a field of INGOs where corruption has been a pertinent issue should look like.We contribute to different literature streams including scholarship on organizational corruption, regula-tory scholarship, neo-institutional organization theory, global governance, and international sports federations."</code></pre>
+</div>
+</div></section><section id="cleaning---removing" class="slide level2 theme-slide7">
+<h2>Cleaning - removing</h2>
+<p>We can remove them with a regex</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>grants<span class="sc">$</span>abstract[<span class="dv">1</span>] <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_remove_all</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">(.+</span><span class="sc">\\</span><span class="st">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="cleaning---removing-output" class="slide level2 theme-slide7 output-location-slide"><h2>Cleaning - removing</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "In organizational research, corruption, the misuse of a position of authority by actors within organizations for private or organizational gain, has attracted a wealth of scholarship . Smart regulation is a normative theory emphasizing that the combination of multiple regulatory in-struments and the coordination of public and private regulatory actors will yield better regulatory outcomes. In view of the smart regulation approach, our project has two purposes: First, we aim to rely on the ‘regulatory design principles’ underlying the smart regulation approach as yardsticks for detailed empirical research in the ISF field. The aim is to inductively develop new descriptive theory on interrelationships between public and private anti-corruption regulation in an INGO context. Second, we will also build new normative theory1: We will build on our empirical findings in order to adapt these design principles to the ISF context and explore how anti-corruption regulation in a field of INGOs where corruption has been a pertinent issue should look like.We contribute to different literature streams including scholarship on organizational corruption, regula-tory scholarship, neo-institutional organization theory, global governance, and international sports federations."</code></pre>
+</div>
+</div></section><section id="cleaning---replacing" class="slide level2 theme-slide7">
+<h2>Cleaning - replacing</h2>
+<p>We can also undo abbreviations</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>abbrs <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"INGO"</span> <span class="ot">=</span> <span class="st">"International non-governmental organizations"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ISF"</span> <span class="ot">=</span> <span class="st">"Importer Security Filing"</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>grants<span class="sc">$</span>abstract[<span class="dv">1</span>] <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_remove_all</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">(.+</span><span class="sc">\\</span><span class="st">)"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(abbrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="cleaning---replacing-output" class="slide level2 theme-slide7 output-location-slide"><h2>Cleaning - replacing</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "In organizational research, corruption, the misuse of a position of authority by actors within organizations for private or organizational gain, has attracted a wealth of scholarship . Smart regulation is a normative theory emphasizing that the combination of multiple regulatory in-struments and the coordination of public and private regulatory actors will yield better regulatory outcomes. In view of the smart regulation approach, our project has two purposes: First, we aim to rely on the ‘regulatory design principles’ underlying the smart regulation approach as yardsticks for detailed empirical research in the Importer Security Filing field. The aim is to inductively develop new descriptive theory on interrelationships between public and private anti-corruption regulation in an International non-governmental organizations context. Second, we will also build new normative theory1: We will build on our empirical findings in order to adapt these design principles to the Importer Security Filing context and explore how anti-corruption regulation in a field of International non-governmental organizationss where corruption has been a pertinent issue should look like.We contribute to different literature streams including scholarship on organizational corruption, regula-tory scholarship, neo-institutional organization theory, global governance, and international sports federations."</code></pre>
+</div>
+</div></section><section id="tokenizing-with-tidytext" class="slide level2 theme-slide8">
+<h2>tokenizing with tidytext</h2>
+<p>{tidytext} provides many <code>unnest_*()</code> functions to help us to tokenize</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(token, abstract) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="tokenizing-with-tidytext-output" class="slide level2 theme-slide8 output-location-slide"><h2>tokenizing with tidytext</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,542,649 × 4
+   token            amount decision_year grant_number
+   &lt;chr&gt;             &lt;int&gt; &lt;fct&gt;         &lt;chr&gt;       
+ 1 in             40380800 2022          212921      
+ 2 organizational 40380800 2022          212921      
+ 3 research       40380800 2022          212921      
+ 4 corruption     40380800 2022          212921      
+ 5 the            40380800 2022          212921      
+ 6 misuse         40380800 2022          212921      
+ 7 of             40380800 2022          212921      
+ 8 a              40380800 2022          212921      
+ 9 position       40380800 2022          212921      
+10 of             40380800 2022          212921      
+# ℹ 1,542,639 more rows</code></pre>
+</div>
+</div></section><section id="section-4" class="slide level2 theme-title1 center">
+<h2></h2>
+<div class="r-fit-text">
+<p>Modifying Tokens</p>
+</div>
+</section>
+<section id="modifying-tokens" class="slide level2 theme-slide1">
+<h2>Modifying Tokens</h2>
+<p><br></p>
+<p>now that we have created the tokens, we will sometimes want to modify them to better reflect what they are trying to represent</p>
+<p><br></p>
+<p>In the end, we want to count the tokens, so the difference between “cow” and “cows” might not matter much</p>
+</section>
+<section id="stemming" class="slide level2 theme-slide2">
+<h2>Stemming</h2>
+<p><br></p>
+<h3 id="removing-endings-to-words">Removing endings to words</h3>
+<p><br></p>
+<p>Can be simple -&gt; remove ending s</p>
+<p>Can be more complicated -&gt; porter stemmer</p>
+<p>Tends to be quite fast</p>
+</section>
+<section id="section-5" class="slide level2 theme-slide2">
+<h2></h2>
+<div class="cell">
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Original word</th>
+<th style="text-align: left;">Remove S</th>
+<th style="text-align: left;">Plural endings</th>
+<th style="text-align: left;">Porter stemming</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">colonies</td>
+<td style="text-align: left;">colonie</td>
+<td style="text-align: left;">colony</td>
+<td style="text-align: left;">coloni</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">studies</td>
+<td style="text-align: left;">studie</td>
+<td style="text-align: left;">study</td>
+<td style="text-align: left;">studi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">surprisingly</td>
+<td style="text-align: left;">surprisingly</td>
+<td style="text-align: left;">surprisingly</td>
+<td style="text-align: left;">surprisingli</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distinctive</td>
+<td style="text-align: left;">distinctive</td>
+<td style="text-align: left;">distinctive</td>
+<td style="text-align: left;">distinct</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">building</td>
+<td style="text-align: left;">building</td>
+<td style="text-align: left;">building</td>
+<td style="text-align: left;">build</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">animals</td>
+<td style="text-align: left;">animal</td>
+<td style="text-align: left;">animal</td>
+<td style="text-align: left;">anim</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">significance</td>
+<td style="text-align: left;">significance</td>
+<td style="text-align: left;">significance</td>
+<td style="text-align: left;">signific</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">beaver</td>
+<td style="text-align: left;">beaver</td>
+<td style="text-align: left;">beaver</td>
+<td style="text-align: left;">beaver</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="stemming-with-tidytext" class="slide level2 theme-slide3">
+<h2>stemming with tidytext</h2>
+<p>The {snowballC} package can perform the porter stemmer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(token, abstract) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">token_stem =</span> SnowballC<span class="sc">::</span><span class="fu">wordStem</span>(token)) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(token, token_stem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="stemming-with-tidytext-output" class="slide level2 theme-slide3 output-location-slide"><h2>stemming with tidytext</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,542,649 × 5
+   token          token_stem amount decision_year grant_number
+   &lt;chr&gt;          &lt;chr&gt;       &lt;int&gt; &lt;fct&gt;         &lt;chr&gt;       
+ 1 in             in         4.04e7 2022          212921      
+ 2 organizational organiz    4.04e7 2022          212921      
+ 3 research       research   4.04e7 2022          212921      
+ 4 corruption     corrupt    4.04e7 2022          212921      
+ 5 the            the        4.04e7 2022          212921      
+ 6 misuse         misus      4.04e7 2022          212921      
+ 7 of             of         4.04e7 2022          212921      
+ 8 a              a          4.04e7 2022          212921      
+ 9 position       posit      4.04e7 2022          212921      
+10 of             of         4.04e7 2022          212921      
+# ℹ 1,542,639 more rows</code></pre>
+</div>
+</div></section><section id="reducing-number-of-tokens" class="slide level2 theme-slide3">
+<h2>Reducing number of tokens</h2>
+<p>Stemming always produces fewer unique tokens</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(token, abstract) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">token_stem =</span> SnowballC<span class="sc">::</span><span class="fu">wordStem</span>(token)) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_unique_token =</span> <span class="fu">n_distinct</span>(token),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_unique_token_stem =</span> <span class="fu">n_distinct</span>(token_stem)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  n_unique_token n_unique_token_stem
+           &lt;int&gt;               &lt;int&gt;
+1          53774               39964</code></pre>
+</div>
+</div>
+</section>
+<section id="reducing-number-of-tokens-1" class="slide level2 theme-slide3">
+<h2>Reducing number of tokens</h2>
+<p>We can investigate the most common <code>token_stem</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(token, abstract) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">token_stem =</span> SnowballC<span class="sc">::</span><span class="fu">wordStem</span>(token)) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(token, token_stem) <span class="sc">|&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_count</span>(token_stem) <span class="sc">|&gt;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n), token_stem) <span class="sc">|&gt;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="reducing-number-of-tokens-1-output" class="slide level2 theme-slide3 output-location-slide"><h2>Reducing number of tokens</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,774 × 3
+    token              token_stem     n
+    &lt;chr&gt;              &lt;chr&gt;      &lt;int&gt;
+  1 generally          gener         25
+  2 generated          gener         25
+  3 general            gener         25
+  4 generative         gener         25
+  5 generate           gener         25
+  6 generation         gener         25
+  7 generates          gener         25
+  8 generic            gener         25
+  9 generating         gener         25
+ 10 generalized        gener         25
+ 11 generalize         gener         25
+ 12 generalizing       gener         25
+ 13 generations        gener         25
+ 14 generous           gener         25
+ 15 generalization     gener         25
+ 16 generalizes        gener         25
+ 17 generalizations    gener         25
+ 18 generality         gener         25
+ 19 generalities       gener         25
+ 20 generator          gener         25
+ 21 generational       gener         25
+ 22 generators         gener         25
+ 23 generously         gener         25
+ 24 generalism         gener         25
+ 25 generalizers       gener         25
+ 26 communities        commun        17
+ 27 community          commun        17
+ 28 communicative      commun        17
+ 29 communicate        commun        17
+ 30 communication      commun        17
+ 31 communalism        commun        17
+ 32 communicated       commun        17
+ 33 commun             commun        17
+ 34 communications     commun        17
+ 35 communicating      commun        17
+ 36 communal           commun        17
+ 37 commune            commun        17
+ 38 communicators      commun        17
+ 39 communicates       commun        17
+ 40 communes           commun        17
+ 41 communicator       commun        17
+ 42 communism          commun        17
+ 43 adapt              adapt         16
+ 44 adaptations        adapt         16
+ 45 adaptive           adapt         16
+ 46 adaptation         adapt         16
+ 47 adapted            adapt         16
+ 48 adaptively         adapt         16
+ 49 adaption           adapt         16
+ 50 adapting           adapt         16
+ 51 adapter            adapt         16
+ 52 adapts             adapt         16
+ 53 adaptability       adapt         16
+ 54 adaptable          adapt         16
+ 55 adaptions          adapt         16
+ 56 adaptative         adapt         16
+ 57 adaptivity         adapt         16
+ 58 adapters           adapt         16
+ 59 activity           activ         15
+ 60 activities         activ         15
+ 61 activated          activ         15
+ 62 activate           activ         15
+ 63 activating         activ         15
+ 64 actively           activ         15
+ 65 active             activ         15
+ 66 activation         activ         15
+ 67 activates          activ         15
+ 68 activator          activ         15
+ 69 activism           activ         15
+ 70 activators         activ         15
+ 71 activeness         activ         15
+ 72 activ              activ         15
+ 73 activations        activ         15
+ 74 initial            initi         15
+ 75 initiation         initi         15
+ 76 initiating         initi         15
+ 77 initiatives        initi         15
+ 78 initiative         initi         15
+ 79 initiated          initi         15
+ 80 initially          initi         15
+ 81 initiates          initi         15
+ 82 initiate           initi         15
+ 83 initiator          initi         15
+ 84 initialization     initi         15
+ 85 initialized        initi         15
+ 86 initials           initi         15
+ 87 initiators         initi         15
+ 88 initialize         initi         15
+ 89 integrate          integr        15
+ 90 integrating        integr        15
+ 91 integral           integr        15
+ 92 integration        integr        15
+ 93 integrated         integr        15
+ 94 integrative        integr        15
+ 95 integrity          integr        15
+ 96 integrable         integr        15
+ 97 integrators        integr        15
+ 98 integrates         integr        15
+ 99 integrations       integr        15
+100 integrator         integr        15
+101 integrals          integr        15
+102 integrally         integr        15
+103 integrability      integr        15
+104 organizations      organ         15
+105 organization       organ         15
+106 organized          organ         15
+107 organism           organ         15
+108 organ              organ         15
+109 organic            organ         15
+110 organizing         organ         15
+111 organize           organ         15
+112 organisms          organ         15
+113 organs             organ         15
+114 organizes          organ         15
+115 organically        organ         15
+116 organizer          organ         15
+117 organics           organ         15
+118 organizers         organ         15
+119 function           function      14
+120 functional         function      14
+121 functions          function      14
+122 functionally       function      14
+123 functioning        function      14
+124 functionality      function      14
+125 functionals        function      14
+126 functionalities    function      14
+127 functionalized     function      14
+128 functionalization  function      14
+129 functionalizations function      14
+130 functionalize      function      14
+131 functioned         function      14
+132 functionalism      function      14
+133 informed           inform        14
+134 inform             inform        14
+135 information        inform        14
+136 informative        inform        14
+137 informal           inform        14
+138 informational      inform        14
+139 informs            inform        14
+140 informing          inform        14
+141 informalization    inform        14
+142 informations       inform        14
+143 informalized       inform        14
+144 informant          inform        14
+145 informants         inform        14
+146 informally         inform        14
+147 operative          oper          14
+148 operational        oper          14
+149 operation          oper          14
+150 operating          oper          14
+151 operate            oper          14
+152 operates           oper          14
+153 operations         oper          14
+154 operated           oper          14
+155 operatively        oper          14
+156 operator           oper          14
+157 operators          oper          14
+158 operable           oper          14
+159 operant            oper          14
+160 operability        oper          14
+161 conformational     conform       13
+162 conformation       conform       13
+163 conformations      conform       13
+164 conformality       conform       13
+165 conformal          conform       13
+166 conforming         conform       13
+167 conformers         conform       13
+168 conform            conform       13
+169 conforms           conform       13
+170 conformally        conform       13
+171 conformance        conform       13
+172 conformity         conform       13
+173 conformer          conform       13
+174 continue           continu       13
+175 continuous         continu       13
+176 continuation       continu       13
+177 continues          continu       13
+178 continuing         continu       13
+179 continuously       continu       13
+180 continued          continu       13
+181 continual          continu       13
+182 continuities       continu       13
+183 continuity         continu       13
+184 continually        continu       13
+185 continuations      continu       13
+186 continuatively     continu       13
+187 cooperation        cooper        13
+188 cooperate          cooper        13
+189 cooperative        cooper        13
+190 cooperating        cooper        13
+191 cooperators        cooper        13
+192 cooperativity      cooper        13
+193 cooperations       cooper        13
+194 cooperativities    cooper        13
+195 cooper             cooper        13
+196 cooperatives       cooper        13
+197 cooperates         cooper        13
+198 coopers            cooper        13
+199 cooperatively      cooper        13
+200 international      intern        13
+# ℹ 53,574 more rows</code></pre>
+</div>
+</div></section><section id="section-6" class="slide level2 theme-title1 center">
+<h2></h2>
+<div class="r-fit-text">
+<p>Filtering Tokens</p>
+</div>
+</section>
+<section id="counting-tokens" class="slide level2 theme-slide4">
+<h2>Counting Tokens</h2>
+<p>Now that we have the tokens in the state we want, we might want to count them</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(token, abstract) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="counting-tokens-output" class="slide level2 theme-slide4 output-location-slide"><h2>Counting Tokens</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,774 × 2
+   token         n
+   &lt;chr&gt;     &lt;int&gt;
+ 1 the       92058
+ 2 of        68818
+ 3 and       59441
+ 4 to        40648
+ 5 in        38999
+ 6 a         25578
+ 7 will      15433
+ 8 is        15158
+ 9 for       14918
+10 on        12392
+11 with      11310
+12 as        11001
+13 this      10779
+14 that      10680
+15 be        10355
+16 by         9211
+17 are        8841
+18 we         8825
+19 from       5920
+20 project    5660
+21 at         5479
+22 an         5449
+23 research   5112
+24 which      4935
+25 these      4859
+26 or         4836
+27 have       4477
+28 their      4079
+29 it         3815
+30 has        3654
+31 our        3622
+32 can        3304
+33 new        3242
+34 such       3233
+35 study      3108
+36 data       2950
+37 between    2829
+38 also       2821
+39 based      2770
+40 how        2758
+41 been       2646
+42 well       2505
+43 different  2499
+44 i          2483
+45 not        2451
+46 cell       2397
+47 high       2281
+48 two        2281
+49 cells      2277
+50 using      2206
+# ℹ 53,724 more rows</code></pre>
+</div>
+</div></section><section id="stop-words" class="slide level2 theme-slide4">
+<h2>Stop words</h2>
+<p>These words are not super interesting, so while we can count them, they don’t tell us much</p>
+<p>These types of words are called stop words</p>
+<p>I have a great talk all about stopwords <a href="https://slcrug-stopwords.netlify.app/">here</a></p>
+</section>
+<section id="stop-words-1" class="slide level2 theme-slide4">
+<h2>Stop words</h2>
+<p>I define stop words as</p>
+<blockquote>
+<p>Low information words that contribute little value to the task at hand</p>
+</blockquote>
+</section>
+<section id="stop-words-lists" class="slide level2 theme-slide5">
+<h2>Stop words lists</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Galago (forumstop)</li>
+<li>EBSCOhost</li>
+<li>CoreNLP (Hardcoded)</li>
+<li>Ranks NL (Google)</li>
+<li>Lucene, Solr, Elastisearch</li>
+<li>MySQL (InnoDB)</li>
+<li>Ovid (Medical information services)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Bow (libbow, rainbow, arrow, crossbow)</li>
+<li>LingPipe</li>
+<li>Vowpal Wabbit (doc2lda)</li>
+<li>Text Analytics 101</li>
+<li>LexisNexis®</li>
+<li>Okapi (gsl.cacm)</li>
+<li>TextFixer</li>
+<li>DKPro</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="stop-words-lists-1" class="slide level2 theme-slide5">
+<h2>Stop words lists</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Postgres</li>
+<li>CoreNLP (Acronym)</li>
+<li>NLTK</li>
+<li>Spark ML lib</li>
+<li>MongoDB</li>
+<li>Quanteda</li>
+<li>Ranks NL (Default)</li>
+<li>Snowball (Original)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Xapian</li>
+<li>99webTools</li>
+<li>Reuters Web of Science™</li>
+<li>Function Words (Cook 1988)</li>
+<li>Okapi (gsl.sample)</li>
+<li>Snowball (Expanded)</li>
+<li>Galago (stopStructure)</li>
+<li>DataScienceDojo</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="stop-words-lists-2" class="slide level2 theme-slide5">
+<h2>Stop words lists</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>CoreNLP (stopwords.txt)</li>
+<li>OkapiFramework</li>
+<li>ATIRE (NCBI Medline)</li>
+<li>scikit-learn</li>
+<li>Glasgow IR</li>
+<li>Function Words (Gilner, Morales 2005)</li>
+<li>Gensim</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Okapi (Expanded gsl.cacm)</li>
+<li>spaCy</li>
+<li>C99 and TextTiling</li>
+<li>Galago (inquery)</li>
+<li>Indri</li>
+<li>Onix, Lextek</li>
+<li>GATE (Keyphrase Extraction)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="he-got-candy.-he-shouldnt-have-but-he-did" class="slide level2 theme-slide6">
+<h2>He got candy. He shouldn’t have, but he did</h2>
+<div class="cell">
+
+</div>
+<h3 id="snowball-175">snowball (175)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div style="display: flex; justify-content: space-between;">
+<span style="color:lightgrey;">"he"</span>
+<span>"got"</span>
+<span>"candy"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"shouldn't"</span>
+<span style="color:lightgrey;">"have"</span>
+<span style="color:lightgrey;">"but"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"did"</span>
+</div>
+</div>
+</div>
+<h3 id="smart-571">SMART (571)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div style="display: flex; justify-content: space-between;">
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"got"</span>
+<span>"candy"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"shouldn't"</span>
+<span style="color:lightgrey;">"have"</span>
+<span style="color:lightgrey;">"but"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"did"</span>
+</div>
+</div>
+</div>
+<h3 id="nltk-179">NLTK (179)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div style="display: flex; justify-content: space-between;">
+<span style="color:lightgrey;">"he"</span>
+<span>"got"</span>
+<span>"candy"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"shouldn't"</span>
+<span style="color:lightgrey;">"have"</span>
+<span style="color:lightgrey;">"but"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"did"</span>
+</div>
+</div>
+</div>
+</section>
+<section id="he-got-candy.-he-shouldnt-have-but-he-did-1" class="slide level2 theme-slide6">
+<h2>He got candy. He shouldn’t have, but he did</h2>
+<h3 id="iso-1298">ISO (1298)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div style="display: flex; justify-content: space-between;">
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"got"</span>
+<span>"candy"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"shouldn't"</span>
+<span style="color:lightgrey;">"have"</span>
+<span style="color:lightgrey;">"but"</span>
+<span style="color:lightgrey;">"he"</span>
+<span style="color:lightgrey;">"did"</span>
+</div>
+</div>
+</div>
+<h3 id="corenlp-29">CoreNLP (29)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div style="display: flex; justify-content: space-between;">
+<span>"he"</span>
+<span>"got"</span>
+<span>"candy"</span>
+<span>"he"</span>
+<span>"shouldn't"</span>
+<span>"have"</span>
+<span>"but"</span>
+<span>"he"</span>
+<span>"did"</span>
+</div>
+</div>
+</div>
+<h3 id="galago-15">Galago (15)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div style="display: flex; justify-content: space-between;">
+<span>"he"</span>
+<span style="color:lightgrey;">"got"</span>
+<span>"candy"</span>
+<span>"he"</span>
+<span>"shouldn't"</span>
+<span>"have"</span>
+<span>"but"</span>
+<span>"he"</span>
+<span>"did"</span>
+</div>
+</div>
+</div>
+</section>
+<section id="funky-stop-words" class="slide level2 theme-slide7">
+<h2>Funky stop words</h2>
+<p><br></p>
+<p><code>she's</code> doesn’t appear in the SMART list, but <code>he's</code> does</p>
+<p><br></p>
+<p><code>fify</code> was left undetected for 3 years (2012 to 2015) in scikit-learn</p>
+<p><br></p>
+<p><code>substantially</code>, <code>successfully</code>, and <code>sufficiently</code> appears in the ISO list</p>
+</section>
+<section id="removing-stop-words-with-tidytext" class="slide level2 theme-slide8">
+<h2>Removing stop words with tidytext</h2>
+<p>Now that we have the tokens in the state we want, we might want to count them</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(token, abstract) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"token"</span> <span class="ot">=</span> <span class="st">"word"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="removing-stop-words-with-tidytext-output" class="slide level2 theme-slide8 output-location-slide"><h2>Removing stop words with tidytext</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,142 × 2
+   token           n
+   &lt;chr&gt;       &lt;int&gt;
+ 1 project      5660
+ 2 research     5112
+ 3 study        3108
+ 4 data         2950
+ 5 based        2770
+ 6 cell         2397
+ 7 cells        2277
+ 8 1            2083
+ 9 studies      2007
+10 development  1992
+# ℹ 53,132 more rows</code></pre>
+</div>
+</div></section><section id="section-7" class="slide level2 theme-title1 center">
+<h2></h2>
+<div class="r-fit-text">
+<p>Counting Tokens</p>
+</div>
+</section>
+<section id="what-to-count" class="slide level2 theme-slide1">
+<h2>What to count</h2>
+<p>We can look at the words that are most different between the two years</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tokens_count_year <span class="ot">&lt;-</span> grants <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(token, abstract) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, decision_year, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"token"</span> <span class="ot">=</span> <span class="st">"word"</span>))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>tokens_count_year <span class="sc">|&gt;</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> decision_year, <span class="at">values_from =</span> n) <span class="sc">|&gt;</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(<span class="st">`</span><span class="at">2012</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">2022</span><span class="st">`</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="what-to-count-output" class="slide level2 theme-slide1 output-location-slide"><h2>What to count</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,142 × 3
+    token         `2012` `2022`
+    &lt;chr&gt;          &lt;int&gt;  &lt;int&gt;
+  1 project         3344   2316
+  2 study           1933   1175
+  3 cells           1487    790
+  4 research        2872   2240
+  5 analysis        1121    622
+  6 cell            1414    983
+  7 model           1085    668
+  8 development     1192    800
+  9 studies         1196    811
+ 10 1               1226    857
+ 11 information      841    485
+ 12 role             992    651
+ 13 processes        918    582
+ 14 investigate      758    422
+ 15 properties       775    445
+ 16 proposed         832    504
+ 17 function         724    397
+ 18 system           997    683
+ 19 understanding   1146    839
+ 20 effects          811    511
+ 21 proposal         645    345
+ 22 experiments      611    314
+ 23 soil             416    120
+ 24 structure        636    351
+ 25 based           1527   1243
+ 26 expression       531    248
+ 27 data            1611   1339
+ 28 propose          606    336
+ 29 mechanisms       829    562
+ 30 activity         608    341
+ 31 field            912    650
+ 32 proteins         521    261
+ 33 results          962    703
+ 34 systems          905    647
+ 35 specific        1071    815
+ 36 time            1033    780
+ 37 techniques       529    281
+ 38 mice             386    141
+ 39 pandemic           1    245
+ 40 experimental     551    318
+ 41 level            662    434
+ 42 phase            464    239
+ 43 functional       566    345
+ 44 major            555    334
+ 45 surface          442    222
+ 46 learning         222    440
+ 47 growth           437    219
+ 48 public           234    451
+ 49 3                804    589
+ 50 involved         410    199
+ 51 low              503    294
+ 52 protein          534    326
+ 53 formation        455    253
+ 54 phd              309    107
+ 55 process          630    433
+ 56 performance      411    218
+ 57 approach         817    625
+ 58 organic          281     91
+ 59 2               1009    820
+ 60 control          717    529
+ 61 test             518    335
+ 62 recently         442    259
+ 63 determine        435    255
+ 64 transport        336    156
+ 65 effect           444    267
+ 66 mechanism        320    145
+ 67 obtained         271     96
+ 68 addition         409    235
+ 69 2011             216     42
+ 70 imaging          449    276
+ 71 gene             386    213
+ 72 structures       415    246
+ 73 processing       326    157
+ 74 genes            308    139
+ 75 2012             211     42
+ 76 theoretical      421    253
+ 77 magnetic         338    170
+ 78 genetic          407    240
+ 79 19                16    181
+ 80 dna              373    210
+ 81 conditions       564    402
+ 82 mass             304    142
+ 83 temperature      322    161
+ 84 developed        579    421
+ 85 water            411    253
+ 86 measurements     300    142
+ 87 projects         325    168
+ 88 investigated     261    104
+ 89 2022               3    160
+ 90 behavior         341    185
+ 91 plan             364    209
+ 92 molecular        753    599
+ 93 cancer           467    313
+ 94 structural       373    219
+ 95 i.e              409    256
+ 96 laboratory       341    188
+ 97 quantum          293    445
+ 98 induced          363    212
+ 99 influence        354    203
+100 2020               4    155
+# ℹ 53,042 more rows</code></pre>
+</div>
+</div></section><section id="n-grams" class="slide level2 theme-slide6">
+<h2>n-grams</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tokenizers)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tokenize_ngrams</span>(example_text, <span class="at">n =</span> <span class="dv">2</span>, <span class="at">n_min =</span> <span class="dv">2</span>)[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>"the bicycle"   "bicycle as"   "as an"   "an example"   "example of"   "of social"   "social construction"   "construction cycling"   "cycling in"   "in eastern"   "eastern europe"   "europe why"   "why are"   "are we"   "we surprised"   "surprised to"   "to learn"   "learn about"   "about its"   "its history"   "history micromobility"   "micromobility and"   "and state"   "state policies"   "policies bicycle"   "bicycle for"   "for emancipation"   "emancipation and"   "and as"   "as a"   "a means"   "means of"   "of totalitarian"   "totalitarian control"   "control how"   "how does"   "does history"   "history cycling"   "cycling in"   "in eastern"   "eastern europe"   "europe relate"   "relate to"   "to other"   "other global"   "global phenomena"   "phenomena of"   "of cycling"</code></pre>
+</div>
+</div>
+</section>
+<section id="counting-n-grams" class="slide level2 theme-slide1">
+<h2>Counting n-grams</h2>
+<p>using <code>unnest_ngrams()</code> allows us to get n-grams</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>grants <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_ngrams</span>(token, abstract, <span class="at">n =</span> <span class="dv">2</span>, <span class="at">n_min =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="counting-n-grams-output" class="slide level2 theme-slide1 output-location-slide"><h2>Counting n-grams</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 571,661 × 2
+   token       n
+   &lt;chr&gt;   &lt;int&gt;
+ 1 of the  14457
+ 2 in the   8265
+ 3 will be  5286
+ 4 on the   3983
+ 5 to the   3925
+ 6 and the  3584
+ 7 we will  2977
+ 8 for the  2907
+ 9 at the   1986
+10 of a     1953
+# ℹ 571,651 more rows</code></pre>
+</div>
+</div></section><section id="counting-n-grams-1" class="slide level2 theme-slide1">
+<h2>Counting n-grams</h2>
+<p>We can remove stop words again</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>bigrams <span class="ot">&lt;-</span> grants <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_ngrams</span>(token, abstract, <span class="at">n =</span> <span class="dv">2</span>, <span class="at">n_min =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(token, <span class="fu">c</span>(<span class="st">"n1"</span>, <span class="st">"n2"</span>), <span class="at">remove =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"n1"</span> <span class="ot">=</span> <span class="st">"word"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"n2"</span> <span class="ot">=</span> <span class="st">"word"</span>))</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>bigrams</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="counting-n-grams-1-output" class="slide level2 theme-slide1 output-location-slide"><h2>Counting n-grams</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 254,139 × 4
+   token                n1        n2             n
+   &lt;chr&gt;                &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;
+ 1 research project     research  project      482
+ 2 project aims         project   aims         351
+ 3 proposed project     proposed  project      282
+ 4 proposed research    proposed  research     270
+ 5 climate change       climate   change       265
+ 6 gene expression      gene      expression   219
+ 7 covid 19             covid     19           168
+ 8 molecular mechanisms molecular mechanisms   161
+ 9 machine learning     machine   learning     144
+10 specific aims        specific  aims         141
+# ℹ 254,129 more rows</code></pre>
+</div>
+</div></section><section id="graph-n-gram" class="slide level2 theme-slide1">
+<h2>Graph n-gram</h2>
+<p>Using {igraph} we can turn the data into a graph</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>bigram_graph <span class="ot">&lt;-</span> bigrams <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(n1, n2, n) <span class="sc">|&gt;</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graph_from_data_frame</span>()</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>bigram_graph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="graph-n-gram-output" class="slide level2 theme-slide1 output-location-slide"><h2>Graph n-gram</h2><div class="cell output-location-slide">
+<div class="cell-output cell-output-stdout">
+<pre><code>IGRAPH 5d1f37a DN-- 148 107 -- 
++ attr: name (v/c), n (e/n)
++ edges from 5d1f37a (vertex names):
+ [1] research  -&gt;project    project   -&gt;aims      
+ [3] proposed  -&gt;project    proposed  -&gt;research  
+ [5] climate   -&gt;change     gene      -&gt;expression
+ [7] covid     -&gt;19         molecular -&gt;mechanisms
+ [9] machine   -&gt;learning   specific  -&gt;aims      
+[11] wide      -&gt;range      real      -&gt;time      
+[13] shed      -&gt;light      single    -&gt;cell      
+[15] mechanisms-&gt;underlying public    -&gt;health    
++ ... omitted several edges</code></pre>
+</div>
+</div></section><section id="plotting-n-gram-graph" class="slide level2 theme-slide1">
+<h2>Plotting n-gram graph</h2>
+<p>Using {ggraph} we can look at the connections of paired words</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggraph)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(bigram_graph, <span class="at">layout =</span> <span class="st">"fr"</span>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>() <span class="sc">+</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>() <span class="sc">+</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="plotting-n-gram-graph-output" class="slide level2 theme-slide1 output-location-slide"><h2>Plotting n-gram graph</h2><div class="cell output-location-slide">
+<div class="cell-output-display">
+<p><img data-src="text-mining_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
+</div>
+</div></section><section id="text-mining-with-r" class="slide level2 theme-slide2">
+<h2>Text Mining with R</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><a href="https://www.tidytextmining.com/">tidytextmining.com</a></p>
+<p><br></p>
+<p>Wonderful book by Julia Silge and David Robinson</p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/text-mining-with-r.png" height="600"></p>
+</div>
+</div>
 <div class="footer footer-default">
 
 </div>

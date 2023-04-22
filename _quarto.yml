@@ -5,7 +5,8 @@ project:
   resources:
     - "text-mining.html"
     - "text-mining_files/"
-
+    - "text-modeling.html"
+    - "text-modeling_files/"
 
 website:
   title: "today"

@@ -2,27 +2,32 @@
 format: html
 ---
 
+## Welcome
+
+These are the materials for the [SoCal RUG Hackathon 2023-04
+](https://github.com/socalrug/hackathon-2023-04) tutorials. In this tutorial will you learn:
+
+- Basics of text mining with [tidytext](https://github.com/juliasilge/tidytext)
+- The effect of text preprocessing
+- How to fit a predictive model in [tidymodels](https://www.tidymodels.org/)
+- Use [textrecipes](https://textrecipes.tidymodels.org/) to construct features form text
+
+## Slides
+
 ```{=html}
 <iframe class="slide-deck" src="text-mining.html"></iframe>
 ```
 
-## Quarto
+[Full screen view](text-mining.html)
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```{=html}
+<iframe class="slide-deck" src="text-modeling.html"></iframe>
 ```
 
-You can add options to executable code like this 
+[Full screen view](text-modeling.html)
 
-```{r}
-#| echo: false
-2 * 2
-```
+## Links
 
-The `echo: false` option disables the printing of code (only output is displayed).
++ Link to Supervised Machine Learning for Text Analysis in R book: <https://smltar.com/>
+
++ Link to Text Mining with R book: <https://www.tidytextmining.com/>

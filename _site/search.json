@@ -1,16 +1,23 @@
 [
   {
-    "objectID": "index.html#quarto",
-    "href": "index.html#quarto",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "today",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "section": "",
+    "text": "These are the materials for the SoCal RUG Hackathon 2023-04 tutorials. In this tutorial will you learn:\n\nBasics of text mining with tidytext\nThe effect of text preprocessing\nHow to fit a predictive model in tidymodels\nUse textrecipes to construct features form text"
   },
   {
-    "objectID": "index.html#running-code",
-    "href": "index.html#running-code",
+    "objectID": "index.html#slides",
+    "href": "index.html#slides",
     "title": "today",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "section": "Slides",
+    "text": "Slides\n\nFull screen view\n\nFull screen view"
+  },
+  {
+    "objectID": "index.html#links",
+    "href": "index.html#links",
+    "title": "today",
+    "section": "Links",
+    "text": "Links\n\nLink to Supervised Machine Learning for Text Analysis in R book: https://smltar.com/\nLink to Text Mining with R book: https://www.tidytextmining.com/"
   }
 ]
