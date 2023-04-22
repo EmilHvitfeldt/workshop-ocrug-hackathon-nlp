@@ -1,0 +1,797 @@
+---
+format: earth-revealjs
+echo: true
+---
+
+## Modeling with Text {.theme-title2 .center}
+
+### OCRUG Hackathon 2023
+
+```{r}
+#| echo: false
+options(pillar.advice = FALSE, pillar.min_title_chars = Inf, width = 62)
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 40))
+```
+
+## Schedule {.theme-slide1}
+
+<br>
+
+- `09:30 AM – 10:15 AM`: Text Mining
+
+- `10:15 AM - 10:30 AM`: Break
+
+- `10:30 AM - 11:15 AM`: Modeling with Text
+
+## Supervised Modeling using text {.theme-title2 .center}
+
+## {.theme-slide1}
+
+<br>
+
+:::{.fragment}
+- Text like this can be used for **supervised** or **predictive** modeling
+:::
+
+<br>
+
+:::{.fragment}
+- We can build both regression and classification models with text data
+:::
+
+<br>
+
+:::{.fragment}
+- We can use the ways language exhibits organization to create features for modeling
+:::
+
+## {.theme-slide2}
+
+::: columns
+::: {.column width="50%"}
+![](images/textrecipes.png)
+:::
+
+::: {.column width="50%"}
+![](images/tidymodels.png)
+:::
+:::
+
+## Modeling Packages {.theme-slide2}
+
+```{r, message=FALSE}
+library(tidymodels)
+library(textrecipes)
+library(readr)
+```
+
+
+[tidymodels](https://www.tidymodels.org/) is a collection of packages for modeling and machine learning using tidyverse principles
+
+[textrecipes](https://textrecipes.tidymodels.org/) extends the recipes package to handle text preprocessing
+
+## Problem statement {.theme-slide2}
+
+<br>
+
+### How much money were the grant awarded?
+
+
+:::{.fragment}
+<br>
+
+We will try to answer this question based on the text field alone
+:::
+
+:::{.fragment}
+<br>
+
+We will ignore that there is a time-component to the data for simplicity
+:::
+
+<br>
+
+:::{.fragment}
+This is a **regression task**
+:::
+
+## Data splitting {.theme-slide3}
+
+The testing set is a precious resource which can be used only once
+
+```{r}
+#| echo: false
+set.seed(16)
+one_split <- slice(mtcars, 1:30) %>% 
+  initial_split() %>% 
+  tidy() %>% 
+  add_row(Row = 1:30, Data = "Original") %>% 
+  mutate(Data = case_when(
+    Data == "Analysis" ~ "Training",
+    Data == "Assessment" ~ "Testing",
+    TRUE ~ Data
+  )) %>% 
+  mutate(Data = factor(Data, levels = c("Original", "Training", "Testing"))) %>%
+  mutate(color = c("Original" = "#13234B","Traning" = "#678D41","Testing" = "#394D85")[Data])
+all_split <-
+  ggplot(one_split, aes(x = Row, y = forcats::fct_rev(Data), fill = color)) + 
+  geom_tile(color = "white",
+            size = 1) +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = rel(2)),
+        axis.text.x = element_blank(),
+        legend.position = "top",
+        panel.grid = element_blank()) +
+  coord_equal(ratio = 1) +
+  labs(x = NULL, y = NULL) +
+  scale_fill_identity()
+  
+all_split
+```
+
+## Data splitting {.theme-slide4}
+
+Using the {yardstick} package allows us to split the data correctly
+
+```{r}
+grants <- read_csv("data/grants.csv.gz", col_types = "cifc")
+grants$amount <- log(grants$amount)
+
+set.seed(1234)
+
+# Make things run faster
+grants <- slice_sample(grants, n = 1000)
+
+grants_split <- initial_split(grants)
+grants_training <- training(grants_split)
+grants_testing <- testing(grants_split)
+```
+
+## What mistake have we made already? {.theme-section2}
+
+<br>
+
+:::{.fragment}
+### We did EDA on the whole dataset
+:::
+
+<br>
+
+:::{.fragment}
+### By not restricting to training set -> data leakage
+:::
+
+## Data preprocessing {.theme-slide5}
+
+### And feature engineering
+
+::: columns
+::: {.column width="50%"}
+Flexible and reproducible preprocessing framework
+:::
+
+::: {.column width="50%"}
+![](images/recipes.png){height=400px}
+:::
+:::
+
+## How to build a recipe {.theme-slide5 .center}
+
+1. Start the `recipe()`
+2. Define the variables involved
+3. Describe preprocessing step-by-step
+
+## Building base recipe {.theme-slide5}
+
+Start with `recipe()` to define outcome and predictors
+
+```{r}
+#| message: true
+recipe(amount ~ abstract, data = grants_training)
+```
+
+## recipes - tokenization {.theme-slide5}
+
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract)
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  show_tokens(abstract) |>
+  purrr::walk(~cat(substr(paste0("\"", .x, "\"", collapse = " "), 1, 60), "...\n"))
+```
+:::
+
+## recipes - stop words {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball")
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  show_tokens(abstract) |>
+  purrr::walk(~cat(substr(paste0("\"", .x, "\"", collapse = " "), 1, 60), "...\n"))
+```
+:::
+
+## recipes - stemming {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract)
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  show_tokens(abstract) |>
+  purrr::walk(~cat(substr(paste0("\"", .x, "\"", collapse = " "), 1, 60), "...\n"))
+```
+:::
+
+## recipes - Removing low frequency words {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250)
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  show_tokens(abstract) |>
+  purrr::walk(~cat(substr(paste0("\"", .x, "\"", collapse = " "), 1, 60), "...\n"))
+```
+:::
+
+## recipes - Getting counts! {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tf(abstract)
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+strip_names <- function(x) {
+  colnames(x) <- stringr::str_remove(colnames(x), "tf_abstract_")
+  x
+}
+
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tf(abstract) |>
+  prep() |>
+  bake(new_data = NULL, -amount) |>
+  as.matrix() |>
+  strip_names() %>%
+  .[1:4, 1:11]
+```
+:::
+
+## recipes - Indicators {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tf(abstract, weight_scheme = "binary")
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+strip_names <- function(x) {
+  colnames(x) <- stringr::str_remove(colnames(x), "tf_abstract_")
+  x
+}
+
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tf(abstract, weight_scheme = "binary") |>
+  prep() |>
+  bake(new_data = NULL, -amount) |>
+  as.matrix() |>
+  strip_names() %>%
+  .[1:4, 1:11]
+```
+:::
+
+## recipes - TF-IDF {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tfidf(abstract)
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+strip_names <- function(x) {
+  colnames(x) <- stringr::str_remove(colnames(x), "tfidf_abstract_")
+  x
+}
+
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tfidf(abstract) |>
+  prep() |>
+  bake(new_data = NULL, -amount) |>
+  as.matrix() |>
+  round(3) |>
+  strip_names() %>%
+  .[1:4, 1:11]
+```
+:::
+
+## recipes - TF-IDF + n-grams {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_ngram(abstract, num_tokens = 2, min_num_tokens = 1) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tfidf(abstract)
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+strip_names <- function(x) {
+  colnames(x) <- stringr::str_remove(colnames(x), "tfidf_abstract_")
+  x
+}
+
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_ngram(abstract, num_tokens = 2, min_num_tokens = 2) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tfidf(abstract) |>
+  prep() |>
+  bake(new_data = NULL, -amount) |>
+  as.matrix() |>
+  round(3) |>
+  strip_names() %>%
+  .[1:4, 1:6]
+```
+:::
+
+## recipes - Hashing + n-grams {.theme-slide5}
+
+```{r}
+#| eval: false
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_ngram(abstract, num_tokens = 2, min_num_tokens = 1) |>
+  step_texthash(text, num_terms = 256)
+```
+
+<br>
+
+:::{.fragment}
+```{r}
+#| echo: false
+strip_names <- function(x) {
+  colnames(x) <- stringr::str_remove(colnames(x), "texthash_abstract_")
+  x
+}
+
+recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_ngram(abstract, num_tokens = 2, min_num_tokens = 2) |>
+  step_texthash(abstract, num_terms = 256) |>
+  prep() |>
+  bake(new_data = NULL, -amount) |>
+  as.matrix() |>
+  round(3) |>
+  strip_names() %>%
+  .[1:4, 1:14]
+```
+:::
+
+## Selecting a recipe {.theme-slide6}
+
+I want to start with the Tf-IDF version
+
+```{r}
+#| message: true
+#| output-location: slide
+rec_spec <- recipe(amount ~ abstract, data = grants_training) |>
+  step_tokenize(abstract) |>
+  step_stopwords(abstract, stopword_source = "snowball") |>
+  step_stem(abstract) |>
+  step_tokenfilter(abstract, max_tokens = 250) |>
+  step_tfidf(abstract)
+
+rec_spec
+```
+
+
+## What kind of models work well for text? {.theme-slide7}
+
+<br>
+
+:::{.fragment}
+Remember that text data is sparse! `r emo::ji("open_mouth")`
+:::
+
+<br>
+
+:::{.fragment}
+- Regularized linear models (glmnet)
+- Support vector machines
+- naive Bayes
+- Tree-based models like random forest? 
+:::
+
+## To specify a model in tidymodels {.theme-slide7}
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+1. Pick a **model**
+
+2. Set the **mode** (if needed)
+
+3. Set the **engine**
+
+All available models are listed at <https://tidymodels.org/find/parsnip>
+:::
+
+::: {.column width="50%"}
+![](images/parsnip.png){height=400px}
+:::
+:::
+
+## set_mode() {.theme-slide7}
+
+Once you have selected a model type, you can select the mode
+
+```{r}
+decision_tree() |>
+  set_mode(mode = "regression")
+```
+
+```{r}
+decision_tree() |>
+  set_mode(mode = "classification")
+```
+
+## set_engine() {.theme-slide7}
+
+The same model can be implemented by multiple computational engines
+
+```{r}
+decision_tree() |>
+  set_engine("rpart")
+
+decision_tree() |>
+  set_engine("spark")
+```
+
+## What makes a model? {.theme-slide7}
+
+```{r}
+lasso_spec <- linear_reg(penalty = tune(), mixture = 1) |>
+  set_mode("regression") |>
+  set_engine("glmnet")
+
+lasso_spec
+```
+
+## Parameters and... hyperparameters? {.theme-slide8}
+
+:::{.fragment}
+Some model parameters can be learned from data during fitting/training
+:::
+
+<br>
+
+:::{.fragment}
+Some CANNOT `r emoji::emoji("scream")`
+:::
+
+<br>
+
+:::{.fragment}
+These are **hyperparameters** of a model, and we estimate them by training lots of models with different hyperparameters and comparing them
+:::
+
+## Grid of values {.theme-slide1}
+
+```{r}
+extract_parameter_set_dials(lasso_spec)
+```
+<br>
+
+```{r}
+param_grid <- extract_parameter_set_dials(lasso_spec) |>
+  grid_regular(levels = c(penalty = 50))
+```
+
+## Grid of values {.theme-slide1}
+
+We can select a high number of `penalty` values at the same time because {glmnet} fits them all at the same time
+
+```{r}
+param_grid
+```
+
+## Spend your data budget {.theme-slide2}
+
+We can do 5-fold cross-validation
+
+```{r}
+set.seed(123)
+grants_folds <- vfold_cv(grants_training, v = 5)
+grants_folds
+```
+
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide2.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide3.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide4.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide5.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide6.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide7.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide8.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide9.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide10.png){width=100%}
+
+## {.theme-slide3}
+
+![](images/cross-validation/Slide11.png){width=100%}
+
+## Spend your data wisely to create **simulated** validation sets {.theme-section2 .center}
+
+## Create a workflow {.theme-slide4}
+
+When we create a workflow, we combine the recipe with the model specification to be able to fit them as once
+
+```{r}
+#| output-location: slide
+wf_spec <- workflow() |>
+  add_recipe(rec_spec) |>
+  add_model(lasso_spec)
+
+wf_spec
+```
+
+## Time to tune! `r emoji::emoji("zap")` {.theme-slide4}
+
+```{r}
+#| message: false
+set.seed(42)
+lasso_rs <- tune_grid(
+  wf_spec,
+  resamples = grants_folds,
+  grid = param_grid, 
+  control = control_grid(verbose = TRUE)
+) 
+```
+
+## Look at the tuning results `r emoji::emoji("eyes")` {.theme-slide6}
+
+The result comes as a tibble, expanded from `grants_folds`
+
+```{r}
+lasso_rs
+```
+
+## Look at the tuning results `r emoji::emoji("eyes")` {.theme-slide6}
+
+There is a whole host of helper functions to extract the information that is contained
+
+```{r}
+collect_metrics(lasso_rs)
+```
+
+## Look at the tuning results `r emoji::emoji("eyes")` {.theme-slide6}
+
+There is even an `autoplot()` method
+
+```{r}
+#| output-location: column
+#| fig-asp: 1
+autoplot(lasso_rs)
+```
+
+## Look at the tuning results `r emoji::emoji("eyes")` {.theme-slide6}
+
+Once we see that there is a "best" model, we colect the best combination of hyper parameters
+
+```{r}
+best_rmse <- lasso_rs |>
+  select_best("rmse")
+
+best_rmse
+```
+
+## Update the workflow {.theme-slide5}
+
+We can update our workflow with the best performing hyperparameters.
+
+```{r}
+#| output-location: slide
+wf_spec_final <- finalize_workflow(wf_spec, best_rmse)
+wf_spec_final
+```
+
+This workflow is ready to go! It can now be applied to new data.
+
+## fit the workflow {.theme-slide5}
+
+We can update our workflow with the best performing hyperparameters.
+
+```{r}
+wf_fit_final <- fit(wf_spec, data = grants_training)
+wf_fit_final
+```
+
+## Assessing performance {.theme-slide8}
+
+We are not doing great
+
+```{r}
+#| output-location: slide
+predict(wf_fit_final, new_data = grants_training, penalty = best_rmse$penalty) |>
+  bind_cols(grants_training) |>
+  ggplot(aes(amount, .pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+```
+
+## Final fit {.theme-slide8}
+
+We will now use `last_fit()` to **fit** our model one last time on our training data and **evaluate** it on our testing data.
+
+```{r}
+final_fit <- last_fit(
+  wf_spec_final, 
+  grants_split
+)
+```
+
+
+## Notice that this is the **first** and **only** time we have used our **testing data** {.theme-section1}
+
+
+## Evaluate on the **test** data {.theme-slide8}
+
+```{r}
+final_fit %>%
+  collect_metrics()
+```
+
+## Evaluate on the **test** data {.theme-slide8}
+
+```{r}
+#| output-location: slide
+final_fit |>
+  collect_predictions() |>
+  ggplot(aes(amount, .pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+```
+
+## Another Book {.theme-slide2}
+
+::: columns
+::: {.column width="50%"}
+[smltar.com](https://smltar.com/)
+
+<br>
+
+by Julia Silge and your truly
+:::
+
+::: {.column width="50%"}
+![](images/smltar.jpeg){height=600px}
+:::
+:::
