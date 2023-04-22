@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "today",
+    "section": "",
+    "text": "These are the materials for the SoCal RUG Hackathon 2023-04 tutorials. In this tutorial will you learn:\n\nBasics of text mining with tidytext\nThe effect of text preprocessing\nHow to fit a predictive model in tidymodels\nUse textrecipes to construct features form text"
+  },
+  {
+    "objectID": "index.html#slides",
+    "href": "index.html#slides",
+    "title": "today",
+    "section": "Slides",
+    "text": "Slides\n\nFull screen view\n\nFull screen view"
+  },
+  {
+    "objectID": "index.html#links",
+    "href": "index.html#links",
+    "title": "today",
+    "section": "Links",
+    "text": "Links\n\nLink to Supervised Machine Learning for Text Analysis in R book: https://smltar.com/\nLink to Text Mining with R book: https://www.tidytextmining.com/"
+  }
+]
