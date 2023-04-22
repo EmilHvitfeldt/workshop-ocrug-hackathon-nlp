@@ -1,66 +1,764 @@
 ---
 format: earth-revealjs
+echo: true
 ---
 
-## .theme-title1 {.theme-title1 .center}
+## Tidy Text Mining {.theme-title1 .center}
 
-### quarto-revealjs-earth
+### OCRUG Hackathon 2023
 
-## .theme-title2 {.theme-title2 .center}
-
-### Another title theme
-
-## .theme-section1 {.theme-section1 .center}
-
-### Text and code example
-
-You are able to include text and code, and the width of each should fit
-
-```{r, echo=TRUE}
-lm(mpg~disp, data = mtcars)
+```{r}
+#| echo: false
+options(pillar.advice = FALSE, pillar.min_title_chars = Inf, width = 62)
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 40))
 ```
 
-## .theme-section2 {.theme-section2 .center}
+## Schedule {.theme-slide1}
 
-### Subtitle
+<br>
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+- `09:30 AM – 10:15 AM`: Text Mining
 
-## .theme-section3 {.theme-section3 .center}
+- `10:15 AM - 10:30 AM`: Break
 
-### Another subtitle
+- `10:30 AM - 11:15 AM`: Modeling with Text
 
-## .theme-slide1 {.theme-slide1}
+## What is text mining? {.theme-section3 .center}
 
-### Normal slide
+::: {.fragment}
+### What is text?
+:::
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+## What is text? {.theme-slide6}
 
-## .theme-slide2 {.theme-slide2}
+A series of characters, hopefully trying to convey meaning
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+::: {.fragment}
+> If you don't go to other men's funerals, they won't go to yours.
 
-## .theme-slide3 {.theme-slide3}
+<br>
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+> 猿も木から落ちる
 
-## .theme-slide4 {.theme-slide4}
+<br>
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+> See you soon 🛫🌴🌞
+:::
 
-## .theme-slide5 {.theme-slide5}
+## What is text mining? {.theme-section3 .center}
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+::: {.fragment}
+The process of transforming unstructured text into structured data for easy analysis
+:::
 
-## .theme-slide6 {.theme-slide6}
+## Disclaimer {.theme-slide1 style="text-align: center;"}
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+<br>
 
-## .theme-slide7 {.theme-slide7}
+I'll show examples in English
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+English is not the only language out there #BenderRule
 
-## .theme-slide8 {.theme-slide8}
+The difficulty of different tasks vary from language to language
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+langauge != text
 
+## Software {.theme-slide2}
+
+::: columns
+::: {.column width="50%"}
+![](images/R-logo.svg){height=200px}
+
+- tidytext
+- quanteda
+- tm
+:::
+
+::: {.column width="50%"}
+![](images/Python-logo.svg){height=200px}
+
+- NLTK
+- spacy
+:::
+:::
+
+## {.theme-slide2}
+
+::: columns
+::: {.column width="50%"}
+![](images/tidytext.png)
+:::
+
+::: {.column width="50%"}
+![](images/tidyverse.png)
+:::
+:::
+
+## {.theme-slide3}
+
+:::{.r-fit-text}
+Most of data science
+
+is counting, 
+
+and sometimes dividing
+:::
+
+*Hadley Wickham*
+
+## {.theme-slide3}
+
+:::{.r-fit-text}
+Most of ~~data science~~
+
+**text preprocessing**
+
+is counting, 
+
+and sometimes dividing
+:::
+
+~~*Hadley Wickham*~~ Emil Hvitfeldt
+
+## Plan {.theme-slide4}
+
+- tokenize
+- modify tokens
+- remove tokens
+- count tokens
+
+## Data {.theme-slide5}
+
+[Swiss National Science Foundation Data Sets](https://data.snf.ch/datasets)
+
+:::{.fragment}
+```{r}
+library(tidyverse)
+library(tidytext)
+```
+:::
+
+:::{.fragment}
+```{r}
+grants <- read_csv("data/grants.csv.gz", col_types = "cifc")
+```
+:::
+
+:::{.fragment}
+```{r}
+glimpse(grants)
+```
+:::
+
+## Data - decision year {.theme-slide5}
+
+We are only looking at 2 different years: 2022 and 2012
+
+```{r}
+#| output-location: column
+#| fig-asp: 1
+grants |>
+  ggplot(aes(decision_year)) +
+  geom_bar()
+```
+
+## Data - amount {.theme-slide5}
+
+The money about of the grant is quite varied
+
+```{r}
+#| output-location: column
+#| fig-asp: 1
+grants |>
+  ggplot(aes(amount)) +
+  geom_histogram(bins = 100)
+```
+
+## Data - amount {.theme-slide5}
+
+Even once we take the logarithm
+
+```{r}
+#| output-location: column
+#| fig-asp: 1
+grants |>
+  ggplot(aes(amount)) +
+  geom_histogram(bins = 100) +
+  scale_x_log10()
+```
+
+## Data - abstracts {.theme-slide5}
+
+```{r}
+grants$abstract[1]
+```
+
+## Data - abstracts {.theme-slide5}
+
+```{r}
+#| output-location: column
+#| fig-asp: 1
+grants |>
+  mutate(n_characters = nchar(abstract)) |>
+  ggplot(aes(n_characters)) +
+  geom_histogram(bins = 100) +
+  scale_x_log10()
+```
+
+## {.theme-title1 .center}
+
+::: r-fit-text
+Tokenization
+:::
+
+## What is tokenization? {.theme-section3 .center}
+
+
+:::{.fragment}
+The process of turning raw text into **tokens**
+:::
+
+## What are tokens? {.theme-section3 .center}
+
+:::{.fragment}
+a meaningful unit of text, such as a word
+:::
+
+## Example text {.theme-slide6}
+
+```{r}
+example_text <- grants |>
+  arrange(nchar(abstract)) |>
+  slice(30) |>
+  pull(abstract)
+
+example_text
+```
+
+## White spaces tokenization {.theme-slide6}
+
+```{r}
+#| eval: false
+str_split(example_text, "\\s")[[1]]
+```
+<br>
+
+```{r}
+#| echo: false
+str_split(example_text, "\\s")[[1]] %>%
+  paste0("\"", ., "\"", collapse = " ") |>
+  cat()
+```
+
+## {tokenizers} package {.theme-slide6}
+
+```{r}
+#| eval: false
+library(tokenizers)
+
+tokenize_words(example_text)[[1]]
+```
+<br>
+
+```{r}
+#| echo: false
+library(tokenizers)
+
+tokenize_words(example_text)[[1]] %>%
+  paste0("\"", ., "\"", collapse = " ") |>
+  cat()
+```
+
+## tokenization considerations {.theme-slide6}
+
+<br>
+
+- Should we turn UPPERCASE letters to lowercase?
+
+<br>
+
+- How should we handle punctuation?
+
+<br>
+
+- What about non-word characters inside words?
+
+## Plan {.theme-slide1}
+
+- *cleaning text*
+- tokenize
+- modify tokens
+- remove tokens
+- count tokens
+
+## Cleaning {.theme-slide7}
+
+Very manual process, and will be highly domain-specific
+
+You might have to use 👻Regular Expressions🧛
+
+## Cleaning {.theme-slide7}
+
+Some grant have many references:
+
+```{r}
+#| output-location: slide
+grants$abstract[1]
+```
+
+## Cleaning - removing {.theme-slide7}
+
+We can remove them with a regex
+
+```{r}
+#| output-location: slide
+grants$abstract[1] |>
+  str_remove_all("\\(.+\\)")
+```
+
+## Cleaning - replacing {.theme-slide7}
+
+We can also undo abbreviations
+
+```{r}
+#| output-location: slide
+abbrs <- c(
+  "INGO" = "International non-governmental organizations",
+  "ISF" = "Importer Security Filing"
+)
+
+grants$abstract[1] |>
+  str_remove_all("\\(.+\\)") |>
+  str_replace_all(abbrs)
+```
+
+## tokenizing with tidytext {.theme-slide8}
+
+{tidytext} provides many `unnest_*()` functions to help us to tokenize
+
+```{r}
+#| output-location: slide
+grants |>
+  unnest_tokens(token, abstract) |>
+  relocate(token)
+```
+
+## {.theme-title1 .center}
+
+::: r-fit-text
+Modifying Tokens
+:::
+
+## Modifying Tokens {.theme-slide1}
+
+<br>
+
+now that we have created the tokens, we will sometimes want to modify them to better reflect what they are trying to represent
+
+<br>
+
+In the end, we want to count the tokens, so the difference between "cow" and "cows" might not matter much
+
+## Stemming {.theme-slide2}
+
+<br>
+
+### Removing endings to words
+
+<br>
+
+Can be simple -> remove ending s
+
+Can be more complicated -> porter stemmer
+
+Tends to be quite fast
+
+## {.theme-slide2}
+
+```{r}
+#| echo: false
+words <- c("colonies", "studies", "surprisingly", "distinctive", "building", "animals", "significance", "beaver")
+
+tibble(word = words) |>
+  mutate(`Remove S` = str_remove(word, "s$"),
+         `Plural endings` = case_when(str_detect(word, "[^e|aies$]ies$") ~
+                                        str_replace(word, "ies$", "y"),
+                                      str_detect(word, "[^e|a|oes$]es$") ~
+                                        str_replace(word, "es$", "e"),
+                                      str_detect(word, "[^ss$|us$]s$") ~
+                                        str_remove(word, "s$"),
+                                      TRUE ~ word),
+         `Porter stemming` = SnowballC::wordStem(word)) |>
+  rename(`Original word` = word) |>
+  knitr::kable()
+```
+
+## stemming with tidytext {.theme-slide3}
+
+The {snowballC} package can perform the porter stemmer
+
+```{r}
+#| output-location: slide
+grants |>
+  unnest_tokens(token, abstract) |>
+  mutate(token_stem = SnowballC::wordStem(token)) |>
+  relocate(token, token_stem)
+```
+
+## Reducing number of tokens {.theme-slide3}
+
+Stemming always produces fewer unique tokens
+
+```{r}
+grants |>
+  unnest_tokens(token, abstract) |>
+  mutate(token_stem = SnowballC::wordStem(token)) |>
+  summarise(
+    n_unique_token = n_distinct(token),
+    n_unique_token_stem = n_distinct(token_stem)
+    )
+```
+
+## Reducing number of tokens {.theme-slide3}
+
+We can investigate the most common `token_stem`
+
+```{r}
+#| output-location: slide
+grants |>
+  unnest_tokens(token, abstract) |>
+  mutate(token_stem = SnowballC::wordStem(token)) |>
+  distinct(token, token_stem) |>
+  add_count(token_stem) |>
+  arrange(desc(n), token_stem) |>
+  print(n = 200)
+```
+
+## {.theme-title1 .center}
+
+::: r-fit-text
+Filtering Tokens
+:::
+
+## Counting Tokens {.theme-slide4}
+
+Now that we have the tokens in the state we want, we might want to count them
+
+```{r}
+#| output-location: slide
+grants |>
+  unnest_tokens(token, abstract) |>
+  count(token, sort = TRUE) |>
+  print(n = 50)
+```
+
+## Stop words {.theme-slide4}
+
+These words are not super interesting, so while we can count them, they don't tell us much
+
+These types of words are called stop words
+
+I have a great talk all about stopwords [here](https://slcrug-stopwords.netlify.app/)
+
+## Stop words {.theme-slide4}
+
+I define stop words as
+
+> Low information words that contribute little value to the task at hand
+
+## Stop words lists {.theme-slide5}
+
+::: columns
+::: {.column width="50%"}
+- Galago (forumstop)
+- EBSCOhost
+- CoreNLP (Hardcoded)
+- Ranks NL (Google)
+- Lucene, Solr, Elastisearch
+- MySQL (InnoDB)
+- Ovid (Medical information services)
+:::
+
+::: {.column width="50%"}
+- Bow (libbow, rainbow, arrow, crossbow)
+- LingPipe
+- Vowpal Wabbit (doc2lda)
+- Text Analytics 101
+- LexisNexis®
+- Okapi (gsl.cacm)
+- TextFixer
+- DKPro
+:::
+:::
+
+## Stop words lists {.theme-slide5}
+
+::: columns
+::: {.column width="50%"}
+- Postgres
+- CoreNLP (Acronym)
+- NLTK
+- Spark ML lib
+- MongoDB
+- Quanteda
+- Ranks NL (Default)
+- Snowball (Original)
+:::
+
+::: {.column width="50%"}
+- Xapian
+- 99webTools
+- Reuters Web of Science™
+- Function Words (Cook 1988)
+- Okapi (gsl.sample)
+- Snowball (Expanded)
+- Galago (stopStructure)
+- DataScienceDojo
+:::
+:::
+
+## Stop words lists {.theme-slide5}
+
+::: columns
+::: {.column width="50%"}
+- CoreNLP (stopwords.txt)
+- OkapiFramework
+- ATIRE (NCBI Medline)
+- scikit-learn
+- Glasgow IR
+- Function Words (Gilner, Morales 2005)
+- Gensim
+:::
+
+::: {.column width="50%"}
+- Okapi (Expanded gsl.cacm)
+- spaCy
+- C99 and TextTiling
+- Galago (inquery)
+- Indri
+- Onix, Lextek
+- GATE (Keyphrase Extraction)
+:::
+:::
+
+## He got candy. He shouldn't have, but he did {.theme-slide6}
+
+```{r, echo = FALSE}
+library(htmltools)
+tobe <- "He got candy. He shouldn't have, but he did."
+highlighter <- function(x, sign) {
+  if (sign) {
+    htmltools::span(x, style = glue::glue('color:lightgrey;'))
+  } else {
+    htmltools::span(x)
+  }
+}
+tokens <- tokenizers::tokenize_words(tobe)[[1]]
+stopword_div <- function(stopwords) {
+  tibble(token = tokens) %>%
+  mutate(print = paste0('"', token, '"'),
+         stopword = token %in% stopwords) %>%
+  mutate(divs = map2(print, stopword, highlighter)) %>%
+  pull(divs) %>%
+  div(style = 'display: flex; justify-content: space-between;')
+}
+```
+
+### snowball (175)
+
+```{r, echo = FALSE}
+stopword_div(stopwords::data_stopwords_snowball$en)
+```
+
+### SMART (571)
+
+```{r, echo = FALSE}
+stopword_div(stopwords::data_stopwords_smart$en)
+```
+
+### NLTK (179)
+
+```{r, echo = FALSE}
+stopword_div(stopwords::data_stopwords_nltk$en)
+```
+
+## He got candy. He shouldn't have, but he did {.theme-slide6}
+
+### ISO (1298)
+
+```{r, echo = FALSE}
+stopword_div(stopwords::data_stopwords_stopwordsiso$en)
+```
+
+### CoreNLP (29)
+
+```{r, echo = FALSE}
+stopword_div(c("a", "an", "the", "of", "at",
+      "on", "upon", "in", "to", "from", "out", "as", "so", "such", "or", "and", "those", "this", "these", "that",
+      "for", ",", "is", "was", "am", "are", "'s", "been", "were"))
+```
+
+### Galago (15)
+
+```{r, echo = FALSE}
+stopword_div(c("isnt",
+"dont",
+"doesnt",
+"havent",
+"wont",
+"wouldnt",
+"cant",
+"say",
+"got",
+"ive",
+"weve",
+"think",
+"lol",
+"doncha",
+"thats"))
+```
+
+## Funky stop words {.theme-slide7}
+
+<br>
+
+`she's` doesn't appear in the SMART list, but `he's` does
+
+<br>
+
+`fify` was left undetected for 3 years (2012 to 2015) in scikit-learn
+
+<br>
+
+`substantially`, `successfully`, and `sufficiently` appears in the ISO list
+
+## Removing stop words with tidytext {.theme-slide8}
+
+Now that we have the tokens in the state we want, we might want to count them
+
+```{r}
+#| output-location: slide
+grants |>
+  unnest_tokens(token, abstract) |>
+  count(token, sort = TRUE) |>
+  anti_join(stop_words, by = c("token" = "word"))
+```
+
+## {.theme-title1 .center}
+
+::: r-fit-text
+Counting Tokens
+:::
+
+## What to count {.theme-slide1}
+
+We can look at the words that are most different between the two years
+
+```{r}
+#| output-location: slide
+tokens_count_year <- grants |>
+  unnest_tokens(token, abstract) |>
+  count(token, decision_year, sort = TRUE) |>
+  anti_join(stop_words, by = c("token" = "word"))
+
+tokens_count_year |>
+  pivot_wider(names_from = decision_year, values_from = n) |>
+  arrange(desc(abs(`2012` - `2022`))) |>
+  print(n = 100)
+```
+
+## n-grams {.theme-slide6}
+
+```{r}
+#| eval: false
+library(tokenizers)
+
+tokenize_ngrams(example_text, n = 2, n_min = 2)[[1]]
+```
+<br>
+
+```{r}
+#| echo: false
+library(tokenizers)
+
+tokenize_ngrams(example_text, n = 2, n_min = 2)[[1]] %>%
+  paste0("\"", ., "\"", collapse = "   ") |>
+  cat()
+```
+
+## Counting n-grams {.theme-slide1}
+
+using `unnest_ngrams()` allows us to get n-grams
+
+```{r}
+#| output-location: slide
+#| warning: false
+grants |>
+  unnest_ngrams(token, abstract, n = 2, n_min = 2) |>
+  count(token, sort = TRUE)
+```
+
+## Counting n-grams {.theme-slide1}
+
+We can remove stop words again
+
+```{r}
+#| output-location: slide
+#| warning: false
+bigrams <- grants |>
+  unnest_ngrams(token, abstract, n = 2, n_min = 2) |>
+  count(token, sort = TRUE) |>
+  separate(token, c("n1", "n2"), remove = FALSE) |>
+  anti_join(stop_words, by = c("n1" = "word")) |>
+  anti_join(stop_words, by = c("n2" = "word"))
+
+bigrams
+```
+
+## Graph n-gram {.theme-slide1}
+
+Using {igraph} we can turn the data into a graph
+
+```{r}
+#| output-location: slide
+library(igraph)
+
+bigram_graph <- bigrams |>
+  filter(n > 50) |>
+  select(n1, n2, n) |>
+  graph_from_data_frame()
+
+bigram_graph
+```
+
+## Plotting n-gram graph {.theme-slide1}
+
+Using {ggraph} we can look at the connections of paired words
+
+```{r}
+#| output-location: slide
+library(ggraph)
+set.seed(2023)
+
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link() +
+  geom_node_point() +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+  theme_void()
+```
+
+## Text Mining with R {.theme-slide2}
+
+::: columns
+::: {.column width="50%"}
+[tidytextmining.com](https://www.tidytextmining.com/)
+
+<br>
+
+Wonderful book by Julia Silge and David Robinson
+:::
+
+::: {.column width="50%"}
+![](images/text-mining-with-r.png){height=600px}
+:::
+:::
